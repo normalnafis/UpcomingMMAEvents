@@ -10,7 +10,7 @@ namespace UfcFightCard
 {
     public static class HtmlDownloader
     {
-        public static async Task<string> DownloadEventsHtml (string url)
+        public static async Task<string> DownloadHtml (string url)
         {
             var httpClient = new HttpClient();
             var html = await httpClient.GetStringAsync(url);
