@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
+using HtmlAgilityPack;
 
 namespace UfcFightCard
 {
     public static class HtmlDownloader
     {
-        public static string DownloadHtml (string url)
+        public static async Task<string> DownloadEventsHtml (string url)
         {
-            using HttpClient client = new HttpClient();
-            using HttpResponseMessage response = client.GetAsync(url).Result;
-            using HttpContent content = response.Content;
-            return content.ReadAsStringAsync().Result;
+            var httpClient = new HttpClient();
+            var html = await httpClient.GetStringAsync(url);
+            return html;
         }
     }
 }
