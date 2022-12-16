@@ -20,8 +20,6 @@ namespace UfcFightCard
                 .Where(node => node.GetAttributeValue("class", "").Contains("c-card-event--result__logo"))
                 .ToList();
 
-            var links = new List<string>();
-
             var link = latestCard[0].SelectSingleNode("a").GetAttributeValue("href","");
             return @"https://www.ufc.com" + link;
         }
