@@ -23,7 +23,7 @@ namespace UfcFightCard
             var links = new List<string>();
 
             var link = latestCard[0].SelectSingleNode("a").GetAttributeValue("href","");
-            return @"https://www.ufc.com/" + link;
+            return @"https://www.ufc.com" + link;
         }
     }
 }
