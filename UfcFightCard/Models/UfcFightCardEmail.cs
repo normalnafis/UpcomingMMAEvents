@@ -12,7 +12,7 @@ namespace UfcFightCard.Models
         public string? FighterRightImage { get; set; }
         public string? FighterLeftName { get; set; }  
         public string? FighterRightName { get; set; }
-        public string? WeihtClass { get; set; }
+        public string? WeightClass { get; set; }
 
     }
 }

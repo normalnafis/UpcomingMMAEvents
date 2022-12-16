@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using UfcFightCard.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace UfcFightCard
 {
@@ -28,8 +29,13 @@ namespace UfcFightCard
             var ufcFightCardHtml = HtmlDownloader.DownloadHtml(url);
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(ufcFightCardHtml.Result);
-            var listOfFights = htmlDocument.DocumentNode.Descendants("ul")
+
+            var ulList = htmlDocument.DocumentNode.Descendants("ul")
                 .Where(node => node.GetAttributeValue("class", "").Contains("l-listing__group--bordered"))
+                .ToList();
+
+            var listOfFights = ulList[0].Descendants("li")
+                .Where(node => node.GetAttributeValue("class", "").Contains("l-listing__item"))
                 .ToList();
 
             var list = new List<UfcFightCardEmail>();
@@ -37,11 +43,11 @@ namespace UfcFightCard
             {
                 var fighCardItem = new UfcFightCardEmail()
                 {
-                    FighterLeftImage = "",
-                    FighterRightImage = "",
-                    FighterLeftName = "",
-                    FighterRightName = "",
-                    WeihtClass = ""
+                    FighterLeftImage = fight.SelectNodes("//img[@class='image-style-event-fight-card-upper-body-of-standing-athlete']")[0].Attributes["src"].Value,
+                    FighterRightImage = fight.SelectNodes("//img[@class='image-style-event-fight-card-upper-body-of-standing-athlete']")[1].Attributes["src"].Value,
+                    FighterLeftName = $"{fight.SelectNodes("//span[@class='c-listing-fight__corner-given-name']")[0].InnerHtml} {fight.SelectNodes("//span[@class='c-listing-fight__corner-family-name']")[0].InnerHtml}",
+                    FighterRightName = $"{fight.SelectNodes("//span[@class='c-listing-fight__corner-given-name']")[1].InnerHtml} {fight.SelectNodes("//span[@class='c-listing-fight__corner-family-name']")[1].InnerHtml}",
+                    WeightClass = fight.SelectSingleNode("//div[@class='c-listing-fight__class-text']").InnerHtml
                 };
                 list.Add(fighCardItem);
             }
