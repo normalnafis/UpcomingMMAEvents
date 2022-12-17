@@ -1,12 +1,15 @@
 ﻿using HtmlAgilityPack;
+using ScrapySharp.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using UfcFightCard.Helpers;
 using UfcFightCard.Models;
 using static System.Net.Mime.MediaTypeNames;
+using static UfcFightCard.Helpers.HtmlNodeHelpers;
 
 namespace UfcFightCard
 {
@@ -41,14 +44,15 @@ namespace UfcFightCard
             var list = new List<UfcFightCardEmail>();
             foreach(var fight in listOfFights)
             {
+                var leftImage = fight.LeftImage();
                 var fighCardItem = new UfcFightCardEmail()
                 {
-                    FighterLeftImage = fight.SelectNodes("//img[@class='image-style-event-fight-card-upper-body-of-standing-athlete']")[0].Attributes["src"].Value,
-                    FighterRightImage = fight.SelectNodes("//img[@class='image-style-event-fight-card-upper-body-of-standing-athlete']")[1].Attributes["src"].Value,
-                    FighterLeftName = $"{fight.SelectNodes("//span[@class='c-listing-fight__corner-given-name']")[0].InnerText} {fight.SelectNodes("//span[@class='c-listing-fight__corner-family-name']")[0].InnerText}",
-                    FighterRightName = $"{fight.SelectNodes("//span[@class='c-listing-fight__corner-given-name']")[1].InnerText} {fight.SelectNodes("//span[@class='c-listing-fight__corner-family-name']")[1].InnerText}",
-                    WeightClass = fight.SelectSingleNode("//div[@class='c-listing-fight__class-text']").InnerText
-                };
+                    FighterLeftImage = fight.LeftImage(),
+                    FighterRightImage = fight.RightImage(),
+                    FighterLeftName = fight.LeftName(),
+                    FighterRightName = fight.RightName(),
+                    WeightClass = fight.WeightClass()
+            };
                 list.Add(fighCardItem);
             }
             return list;
