@@ -20,11 +20,9 @@ namespace UfcFightCard
             var ufcEventsHtml = HtmlDownloader.DownloadHtml("https://www.ufc.com/events");
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(ufcEventsHtml.Result);
-            var latestCard = htmlDocument.DocumentNode.Descendants("div")
-                .Where(node => node.GetAttributeValue("class", "").Contains("c-card-event--result__logo"))
-                .ToList();
+            var latestCard = LatestCard(htmlDocument);
 
-            var link = latestCard[0].SelectSingleNode("a").GetAttributeValue("href","");
+            var link = MainCardUrl(latestCard);
             return @"https://www.ufc.com" + link;
         }
         public static List<UfcFightCardEmail> GetUfcMainCardContent(string url)
@@ -40,7 +38,7 @@ namespace UfcFightCard
             var list = new List<UfcFightCardEmail>();
             foreach(var fight in listOfFights)
             {
-                var fighCardItem = new UfcFightCardEmail()
+                var fightCardItem = new UfcFightCardEmail()
                 {
                     FighterLeftImage = fight.LeftImage(),
                     FighterRightImage = fight.RightImage(),
@@ -48,7 +46,7 @@ namespace UfcFightCard
                     FighterRightName = fight.RightName(),
                     WeightClass = fight.WeightClass()
                 };
-                list.Add(fighCardItem);
+                list.Add(fightCardItem);
             }
             return list;
         }
