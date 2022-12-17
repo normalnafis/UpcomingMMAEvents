@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using UfcFightCard;
-using UfcFightCard.Models;
+using UfcFightCard.Constants;
 
 var config = new ConfigurationBuilder()
-               .AddJsonFile("C:\\Users\\Nafis Rahman\\source\\repos\\UpcomingMMAEvents\\UfcFightCard\\appsettings.json", false)
+               .AddJsonFile(Url.Config, false)
                .Build();
 
 var ufcCardUrl = UfcEventsScraper.GetLatestUfcCardUrl();

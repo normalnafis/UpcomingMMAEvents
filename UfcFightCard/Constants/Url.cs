@@ -10,5 +10,6 @@ namespace UfcFightCard.Constants
     {
         public const string Ufc = "https://www.ufc.com";
         public const string Events = "https://www.ufc.com/events";
+        public const string Config = "C:\\Users\\Nafis Rahman\\source\\repos\\UpcomingMMAEvents\\UfcFightCard\\appsettings.json";
     }
 }
