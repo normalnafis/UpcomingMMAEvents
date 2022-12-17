@@ -47,7 +47,7 @@ namespace UfcFightCard
                     FighterLeftName = fight.LeftName(),
                     FighterRightName = fight.RightName(),
                     WeightClass = fight.WeightClass()
-            };
+                };
                 list.Add(fighCardItem);
             }
             return list;
