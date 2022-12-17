@@ -10,6 +10,7 @@ using UfcFightCard.Helpers;
 using UfcFightCard.Models;
 using static System.Net.Mime.MediaTypeNames;
 using static UfcFightCard.Helpers.HtmlNodeHelpers;
+using static UfcFightCard.Constants.Url;
 
 namespace UfcFightCard
 {
@@ -17,13 +18,13 @@ namespace UfcFightCard
     {
         public static string GetLatestUfcCardUrl()
         {
-            var ufcEventsHtml = HtmlDownloader.DownloadHtml("https://www.ufc.com/events");
+            var ufcEventsHtml = HtmlDownloader.DownloadHtml(Events);
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(ufcEventsHtml.Result);
             var latestCard = LatestCard(htmlDocument);
 
             var link = MainCardUrl(latestCard);
-            return @"https://www.ufc.com" + link;
+            return Ufc + link;
         }
         public static List<UfcFightCardEmail> GetUfcMainCardContent(string url)
         {
