@@ -32,11 +32,16 @@ namespace UfcFightCard
             htmlDocument.LoadHtml(ufcFightCardHtml.Result);
 
             var ulList = UnorderedList(htmlDocument);
-
             var listOfFights = Fights(ulList);
+            var fightCardList = FightCardEmailBuilder(listOfFights);
 
+            return fightCardList;
+        }
+
+        public static List<UfcFightCardEmail> FightCardEmailBuilder(List<HtmlNode> listOfFights)
+        {
             var list = new List<UfcFightCardEmail>();
-            foreach(var fight in listOfFights)
+            foreach (var fight in listOfFights)
             {
                 var fightCardItem = new UfcFightCardEmail()
                 {
