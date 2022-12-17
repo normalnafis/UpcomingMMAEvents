@@ -33,18 +33,13 @@ namespace UfcFightCard
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(ufcFightCardHtml.Result);
 
-            var ulList = htmlDocument.DocumentNode.Descendants("ul")
-                .Where(node => node.GetAttributeValue("class", "").Contains("l-listing__group--bordered"))
-                .ToList();
+            var ulList = UnorderedList(htmlDocument);
 
-            var listOfFights = ulList[0].Descendants("li")
-                .Where(node => node.GetAttributeValue("class", "").Contains("l-listing__item"))
-                .ToList();
+            var listOfFights = Fights(ulList);
 
             var list = new List<UfcFightCardEmail>();
             foreach(var fight in listOfFights)
             {
-                var leftImage = fight.LeftImage();
                 var fighCardItem = new UfcFightCardEmail()
                 {
                     FighterLeftImage = fight.LeftImage(),

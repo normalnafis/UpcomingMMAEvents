@@ -33,5 +33,19 @@ namespace UfcFightCard.Helpers
         {
             return htmlNode.CssSelect("div.c-listing-fight__class-text").First().InnerHtml;
         }
+
+        public static List<HtmlNode> Fights(List<HtmlNode> htmlNode)
+        {
+            return htmlNode[0].Descendants("li")
+                .Where(node => node.GetAttributeValue("class", "").Contains("l-listing__item"))
+                .ToList();
+        }
+
+        public static List<HtmlNode> UnorderedList(HtmlDocument htmlDoc)
+        {
+            return htmlDoc.DocumentNode.Descendants("ul")
+                .Where(node => node.GetAttributeValue("class", "").Contains("l-listing__group--bordered"))
+                .ToList();
+        }
     }
 }
