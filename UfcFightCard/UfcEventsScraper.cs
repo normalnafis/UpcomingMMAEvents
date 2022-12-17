@@ -45,9 +45,9 @@ namespace UfcFightCard
                 {
                     FighterLeftImage = fight.SelectNodes("//img[@class='image-style-event-fight-card-upper-body-of-standing-athlete']")[0].Attributes["src"].Value,
                     FighterRightImage = fight.SelectNodes("//img[@class='image-style-event-fight-card-upper-body-of-standing-athlete']")[1].Attributes["src"].Value,
-                    FighterLeftName = $"{fight.SelectNodes("//span[@class='c-listing-fight__corner-given-name']")[0].InnerHtml} {fight.SelectNodes("//span[@class='c-listing-fight__corner-family-name']")[0].InnerHtml}",
-                    FighterRightName = $"{fight.SelectNodes("//span[@class='c-listing-fight__corner-given-name']")[1].InnerHtml} {fight.SelectNodes("//span[@class='c-listing-fight__corner-family-name']")[1].InnerHtml}",
-                    WeightClass = fight.SelectSingleNode("//div[@class='c-listing-fight__class-text']").InnerHtml
+                    FighterLeftName = $"{fight.SelectNodes("//span[@class='c-listing-fight__corner-given-name']")[0].InnerText} {fight.SelectNodes("//span[@class='c-listing-fight__corner-family-name']")[0].InnerText}",
+                    FighterRightName = $"{fight.SelectNodes("//span[@class='c-listing-fight__corner-given-name']")[1].InnerText} {fight.SelectNodes("//span[@class='c-listing-fight__corner-family-name']")[1].InnerText}",
+                    WeightClass = fight.SelectSingleNode("//div[@class='c-listing-fight__class-text']").InnerText
                 };
                 list.Add(fighCardItem);
             }
