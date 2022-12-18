@@ -6,7 +6,10 @@ var config = new ConfigurationBuilder()
                .AddJsonFile(Url.Config, false)
                .Build();
 
-var ufcCardUrl = UfcEventsScraper.GetLatestUfcCardUrl();
-var fightCardContent = UfcEventsScraper.GetUfcMainCardContent(ufcCardUrl);
+var ufcCardDetails = UfcEventsScraper.GetLatestUfcCardDetails();
+if(ufcCardDetails.LatestCardUrl!= null)
+{
+    var fightCardContent = UfcEventsScraper.GetUfcMainCardContent(ufcCardDetails.LatestCardUrl);
+}
 
 Console.WriteLine(ufcCardUrl);

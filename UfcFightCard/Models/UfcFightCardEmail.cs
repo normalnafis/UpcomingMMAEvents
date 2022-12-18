@@ -13,6 +13,5 @@ namespace UfcFightCard.Models
         public string? FighterLeftName { get; set; }  
         public string? FighterRightName { get; set; }
         public string? WeightClass { get; set; }
-
     }
 }

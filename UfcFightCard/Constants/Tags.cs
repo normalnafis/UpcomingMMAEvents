@@ -15,7 +15,8 @@ namespace UfcFightCard.Constants
         public const string WeightClass = "div.c-listing-fight__class-text";
         public const string Fights = "l-listing__group--bordered";
         public const string Rows = "l-listing__item";
-        public const string Card = "c-card-event--result__logo";
+        public const string CardLogo = "c-card-event--result__logo";
+        public const string CardInfo = "c-card-event--result__info";
 
         //html tag constants
         public const string Li = "li";
@@ -27,5 +28,6 @@ namespace UfcFightCard.Constants
         public const string Class = "class";
         public const string Href = "href";
         public const string Src = "src";
+        public const string TimeStamp = "data-main-card-timestamp";
     }
 }

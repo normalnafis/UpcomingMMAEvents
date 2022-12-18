@@ -16,15 +16,21 @@ namespace UfcFightCard
 {
     public static class UfcEventsScraper
     {
-        public static string GetLatestUfcCardUrl()
+        public static LatestCard GetLatestUfcCardDetails()
         {
             var ufcEventsHtml = HtmlDownloader.DownloadHtml(Events);
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(ufcEventsHtml.Result);
-            var latestCard = LatestCard(htmlDocument);
-
+            var latestCard = LatestCard(htmlDocument); 
             var link = MainCardUrl(latestCard);
-            return Ufc + link;
+            var timeStamp = CardTimeStamp(htmlDocument);
+
+            var latestCardDetails = new LatestCard()
+            {
+                LatestCardUrl = Ufc + link,
+                MainCardTimeStamp = timeStamp
+            };
+            return latestCardDetails;
         }
         public static List<UfcFightCardEmail> GetUfcMainCardContent(string url)
         {
