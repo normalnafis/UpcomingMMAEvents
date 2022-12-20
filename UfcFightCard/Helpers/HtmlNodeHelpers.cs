@@ -10,27 +10,50 @@ namespace UfcFightCard.Helpers
     {
         public static string LeftImage(this HtmlNode htmlNode)
         {
-            return htmlNode.CssSelect(Tags.AthleteImage).First().Attributes[Tags.Src].Value;
+            return htmlNode.CssSelect(Tags.AthleteImage).First().Attributes[Tags.Src].Value.Trim();
         }
         public static string RightImage(this HtmlNode htmlNode)
         {
-            return htmlNode.CssSelect(Tags.AthleteImage).ToList()[1].Attributes[Tags.Src].Value;
+            return htmlNode.CssSelect(Tags.AthleteImage).ToList()[1].Attributes[Tags.Src].Value.Trim();
         }
         public static string LeftName(this HtmlNode htmlNode)
         {
-            var givenName = htmlNode.CssSelect(Tags.GivenName).ToList()[0].InnerHtml;
-            var familyName = htmlNode.CssSelect(Tags.FamilyName).ToList()[0].InnerHtml;
-            return $"{givenName} {familyName}";
+            try
+            {
+                var givenName = htmlNode.CssSelect(Tags.FullNameRed).ToList()[0].CssSelect(Tags.GivenName).ToList()[0].InnerHtml;
+                var familyName = htmlNode.CssSelect(Tags.FullNameRed).ToList()[0].CssSelect(Tags.FamilyName).ToList()[0].InnerHtml;
+                return $"{givenName.Trim()} {familyName.Trim()}";
+            }
+            catch
+            {
+                var name = htmlNode.CssSelect(Tags.FullNameRed).ToList()[0].InnerHtml;
+                return $"{name.Trim()}";
+            }
         }
         public static string RightName(this HtmlNode htmlNode)
         {
-            var givenName = htmlNode.CssSelect(Tags.GivenName).ToList()[1].InnerHtml;
-            var familyName = htmlNode.CssSelect(Tags.FamilyName).ToList()[1].InnerHtml;
-            return $"{givenName} {familyName}";
+            try
+            {
+                var givenName = htmlNode.CssSelect(Tags.FullNameBlue).ToList()[0].CssSelect(Tags.GivenName).ToList()[0].InnerHtml;
+                var familyName = htmlNode.CssSelect(Tags.FullNameBlue).ToList()[0].CssSelect(Tags.FamilyName).ToList()[0].InnerHtml;
+                return $"{givenName.Trim()} {familyName.Trim()}";
+            }
+            catch
+            {
+                var name = htmlNode.CssSelect(Tags.FullNameBlue).ToList()[0].InnerHtml;
+                return $"{name.Trim()}";
+            }
         }
         public static string WeightClass(this HtmlNode htmlNode)
         {
-            return htmlNode.CssSelect(Tags.WeightClass).First().InnerHtml;
+            try
+            {
+                return htmlNode.CssSelect(Tags.WeightClass).First().InnerHtml;
+            }
+            catch
+            {
+                return "N/a";
+            }
         }
         public static List<HtmlNode> Fights(List<HtmlNode> htmlNode)
         {

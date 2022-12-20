@@ -12,7 +12,7 @@ var config = new ConfigurationBuilder()
 var ufcCardDetails = UfcEventsScraper.GetLatestUfcCardDetails();
 
     NullChecker.Null(ufcCardDetails.LatestCardUrl);
-    var fightCardContent = UfcEventsScraper.GetUfcMainCardContent(ufcCardDetails.LatestCardUrl);
+    var fightCardContent = UfcEventsScraper.GetUfcMainCardContent("https://www.ufc.com/event/ufc-283");
     var html = await RazorTemplateEngine.RenderAsync(Url.razor, fightCardContent);
     var emaildetails = config.GetRequiredSection("Emaildetails").Get<Emaildetails>();
     if (emaildetails != null) { SmtpInitialize.SendEmail(emaildetails, html, ufcCardDetails.MainCardTimeStamp.GetValueOrDefault(DateTime.Now)); }

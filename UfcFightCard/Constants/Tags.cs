@@ -12,6 +12,8 @@ namespace UfcFightCard.Constants
         public const string AthleteImage = "img.image-style-event-fight-card-upper-body-of-standing-athlete";
         public const string GivenName = "span.c-listing-fight__corner-given-name";
         public const string FamilyName = "span.c-listing-fight__corner-family-name";
+        public const string FullNameRed = "div.c-listing-fight__corner-name.c-listing-fight__corner-name--red";
+        public const string FullNameBlue = "div.c-listing-fight__corner-name.c-listing-fight__corner-name--blue";
         public const string WeightClass = "div.c-listing-fight__class-text";
         public const string Fights = "l-listing__group--bordered";
         public const string Rows = "l-listing__item";
