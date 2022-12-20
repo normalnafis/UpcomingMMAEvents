@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UfcFightCard", "UfcFightCard\UfcFightCard.csproj", "{9A67E3EB-467D-4579-818C-8B293508B159}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UfcFightCard", "UfcFightCard\UfcFightCard.csproj", "{9A67E3EB-467D-4579-818C-8B293508B159}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardEmailer", "CardEmailer\CardEmailer.csproj", "{D5CE5E8E-031F-44FD-95FB-229275D5BE9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{9A67E3EB-467D-4579-818C-8B293508B159}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A67E3EB-467D-4579-818C-8B293508B159}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A67E3EB-467D-4579-818C-8B293508B159}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5CE5E8E-031F-44FD-95FB-229275D5BE9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5CE5E8E-031F-44FD-95FB-229275D5BE9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5CE5E8E-031F-44FD-95FB-229275D5BE9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5CE5E8E-031F-44FD-95FB-229275D5BE9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

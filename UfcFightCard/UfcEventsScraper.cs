@@ -11,6 +11,7 @@ using UfcFightCard.Models;
 using static System.Net.Mime.MediaTypeNames;
 using static UfcFightCard.Helpers.HtmlNodeHelpers;
 using static UfcFightCard.Constants.Url;
+using CardEmailer;
 
 namespace UfcFightCard
 {
