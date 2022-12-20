@@ -2,6 +2,7 @@
 using Razor.Templating.Core;
 using UfcFightCard;
 using UfcFightCard.Constants;
+using UfcFightCard.Misc;
 using UfcFightCard.Models;
 
 var config = new ConfigurationBuilder()
@@ -9,10 +10,9 @@ var config = new ConfigurationBuilder()
                .Build();
 
 var ufcCardDetails = UfcEventsScraper.GetLatestUfcCardDetails();
-if(ufcCardDetails.LatestCardUrl!= null)
-{
+
+    NullChecker.Null(ufcCardDetails.LatestCardUrl);
     var fightCardContent = UfcEventsScraper.GetUfcMainCardContent(ufcCardDetails.LatestCardUrl);
     var html = await RazorTemplateEngine.RenderAsync(Url.razor, fightCardContent);
     var emaildetails = config.GetRequiredSection("Emaildetails").Get<Emaildetails>();
     if (emaildetails != null) { SmtpInitialize.SendEmail(emaildetails, html, ufcCardDetails.MainCardTimeStamp.GetValueOrDefault(DateTime.Now)); }
-}
