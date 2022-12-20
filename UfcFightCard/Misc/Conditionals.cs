@@ -9,7 +9,7 @@ namespace UfcFightCard.Misc
 {
     public static class Conditionals
     {
-        public static bool ShouldSendEmail(LatestCard card, Emaildetails emaildetails)
+        public static bool ShouldSendEmail(LatestCard card, Emaildetails? emaildetails)
         {
             DateTime currentTime = DateTime.Now;
             DateTime targetTime = card.MainCardTimeStamp.GetValueOrDefault(DateTime.Now);
