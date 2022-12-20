@@ -15,9 +15,6 @@ namespace UfcFightCard
         {
             if (emaildetails != null && emaildetails.Email != null && emaildetails.ToEmail != null)
             {
-                var year = cardTimeStamp.Year;
-                var month = cardTimeStamp.Month;
-                var day = cardTimeStamp.Day;    
                 var Client = new SmtpClient()
                 {
                     Host = "smtp.gmail.com",
@@ -37,7 +34,7 @@ namespace UfcFightCard
                 var Message = new MailMessage
                 {
                     From = FromEmail,
-                    Subject = $"Ufc card {day} {month} {year}",
+                    Subject = $"Ufc card {cardTimeStamp.ToString("D")}",
                     Body = html,
                     IsBodyHtml = true
                 };
