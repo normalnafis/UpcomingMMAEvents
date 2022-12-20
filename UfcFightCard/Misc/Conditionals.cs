@@ -9,7 +9,7 @@ namespace UfcFightCard.Misc
 {
     public static class Conditionals
     {
-        public static bool ShouldSendEmail(LatestCard card)
+        public static bool ShouldSendEmail(LatestCard card, Emaildetails emaildetails)
         {
             DateTime currentTime = DateTime.Now;
             DateTime targetTime = card.MainCardTimeStamp.GetValueOrDefault(DateTime.Now);
@@ -17,7 +17,7 @@ namespace UfcFightCard.Misc
             bool isItTimeToSend = false;
 
             if (difference.TotalDays <= 7) { isItTimeToSend = true; }
-            return (card != null) && (isItTimeToSend);
+            return (card != null) && (emaildetails != null) && (isItTimeToSend);
         }
     }
 }

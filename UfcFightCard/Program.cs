@@ -15,7 +15,7 @@ NullChecker.Null(ufcCardDetails.LatestCardUrl);
 var fightCardContent = UfcEventsScraper.GetUfcMainCardContent(ufcCardDetails.LatestCardUrl);
 var html = await RazorTemplateEngine.RenderAsync(Url.razor, fightCardContent);
 var emaildetails = config.GetRequiredSection("Emaildetails").Get<Emaildetails>();
-if (Conditionals.ShouldSendEmail(ufcCardDetails) && emaildetails != null) 
+if (Conditionals.ShouldSendEmail(ufcCardDetails, emaildetails)) 
 { 
     SmtpInitialize.SendEmail(emaildetails, html, ufcCardDetails.MainCardTimeStamp.GetValueOrDefault(DateTime.Now));
 }
