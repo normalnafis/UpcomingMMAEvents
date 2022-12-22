@@ -16,7 +16,15 @@ namespace UfcFightCard.Helpers
         {
             return htmlNode.CssSelect(Tags.AthleteImage).ToList()[1].Attributes[Tags.Src].Value.Trim();
         }
-        public static string LeftName(this HtmlNode htmlNode)
+		public static string LeftCountryImage(this HtmlNode htmlNode)
+		{
+            return $"{Url.Ufc}{htmlNode.CssSelect(Tags.AthleteCountryLeft).ToList()[0].CssSelect(Tags.Img).First().Attributes[Tags.Src].Value.Trim()}";
+		}
+		public static string RightCountryImage(this HtmlNode htmlNode)
+		{
+			return $"{Url.Ufc}{htmlNode.CssSelect(Tags.AthleteCountryRight).ToList()[0].CssSelect(Tags.Img).First().Attributes[Tags.Src].Value.Trim()}";
+		}
+		public static string LeftName(this HtmlNode htmlNode)
         {
             try
             {
@@ -48,14 +56,36 @@ namespace UfcFightCard.Helpers
         {
             try
             {
-                return htmlNode.CssSelect(Tags.WeightClass).First().InnerHtml;
+                return htmlNode.CssSelect(Tags.WeightClass).First().InnerHtml.Trim();
             }
             catch
             {
                 return "N/a";
             }
         }
-        public static List<HtmlNode> Fights(List<HtmlNode> htmlNode)
+		public static string CountryLeft(this HtmlNode htmlNode)
+		{
+			try
+			{
+				return htmlNode.CssSelect(Tags.CountryText).ToList()[0].InnerHtml.Trim();
+			}
+			catch
+			{
+				return "N/a";
+			}
+		}
+		public static string CountryRight(this HtmlNode htmlNode)
+		{
+			try
+			{
+				return htmlNode.CssSelect(Tags.CountryText).ToList()[1].InnerHtml.Trim();
+			}
+			catch
+			{
+				return "N/a";
+			}
+		}
+		public static List<HtmlNode> Fights(List<HtmlNode> htmlNode)
         {
             return htmlNode[0].Descendants(Tags.Li)
                 .Where(node => node.GetAttributeValue(Tags.Class, "").Contains(Tags.Rows))
@@ -90,7 +120,29 @@ namespace UfcFightCard.Helpers
         }
         public static string MainCardUrl(List<HtmlNode> htmlNode)
         {
-            return htmlNode[0].SelectSingleNode(Tags.A).GetAttributeValue(Tags.Href, "");
+            return htmlNode[0].SelectSingleNode(Tags.A).GetAttributeValue(Tags.Href, "").Trim();
         }
-    }
+		public static string LeftRank(this HtmlNode htmlNode)
+		{
+            try
+            {
+				return htmlNode.CssSelect(Tags.Rank).First().CssSelect(Tags.Span).ToList().First().InnerHtml.Trim();
+			}
+            catch
+            {
+                return "#N/a";
+            }
+		}
+		public static string RightRank(this HtmlNode htmlNode)
+		{
+            try
+            {
+				return htmlNode.CssSelect(Tags.Rank).ToList()[1].CssSelect(Tags.Span).ToList().First().InnerHtml.Trim();
+			}
+			catch
+			{
+				return "#N/a";
+			}
+		}
+	}
 }

@@ -14,8 +14,7 @@ namespace UfcFightCard
     {
         public static void SendEmail(Emaildetails? emaildetails, string html, DateTime cardTimeStamp)
         {
-            if(emaildetails == null) { throw new ArgumentNullException("email"); }
-            NullChecker.Null(emaildetails.FromEmail);
+            if(emaildetails is null || emaildetails.FromEmail is null) { throw new ArgumentNullException("email"); }
             NullChecker.Null(emaildetails.ToEmail);
             var Client = new SmtpClient()
             {

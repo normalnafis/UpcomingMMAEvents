@@ -57,8 +57,14 @@ namespace UfcFightCard
                     FighterRightImage = fight.RightImage(),
                     FighterLeftName = fight.LeftName(),
                     FighterRightName = fight.RightName(),
-                    WeightClass = fight.WeightClass()
-                };
+                    WeightClass = fight.WeightClass(),
+                    FighterLeftCountry = fight.CountryLeft(),
+                    FighterRightCountry = fight.CountryRight(),
+                    FighterLeftCountryImage = fight.LeftCountryImage(),
+                    FighterRightCountryImage = fight.RightCountryImage(),
+                    FighterLeftRank = fight.LeftRank(),
+                    FighterRightRank = fight.RightRank()
+				};
                 list.Add(fightCardItem);
             }
             return list;
