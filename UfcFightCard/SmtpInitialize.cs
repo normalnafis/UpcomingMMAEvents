@@ -15,7 +15,7 @@ namespace UfcFightCard
         public static void SendEmail(Emaildetails? emaildetails, string html, DateTime cardTimeStamp)
         {
             if(emaildetails == null) { throw new ArgumentNullException("email"); }
-            NullChecker.Null(emaildetails.Email);
+            NullChecker.Null(emaildetails.FromEmail);
             NullChecker.Null(emaildetails.ToEmail);
             var Client = new SmtpClient()
             {
@@ -26,21 +26,21 @@ namespace UfcFightCard
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential()
                 {
-                    UserName = emaildetails.Email,
+                    UserName = emaildetails.FromEmail,
                     Password = emaildetails.Password
                 }
             };
-
-            var FromEmail = new MailAddress(emaildetails.Email, emaildetails.Name);
-            var ToEmail = new MailAddress(emaildetails.ToEmail, emaildetails.ToName);
-            var Message = new MailMessage
+            var Message = new MailMessage();
+			foreach (var email in emaildetails.ToEmail.ToList())
             {
-                From = FromEmail,
-                Subject = $"Ufc card {cardTimeStamp.ToString("D")}",
-                Body = html,
-                IsBodyHtml = true
-            };
-            Message.To.Add(ToEmail);
+				var FromEmail = new MailAddress(emaildetails.FromEmail, emaildetails.Name);
+				var ToEmail = new MailAddress(email, emaildetails.ToName);
+                Message.From = FromEmail;
+				Message.Subject = $"Ufc card {cardTimeStamp.ToString("D")}";
+				Message.Body = html;
+                Message.IsBodyHtml = true;
+				Message.To.Add(ToEmail);
+			}
 
             try
             {

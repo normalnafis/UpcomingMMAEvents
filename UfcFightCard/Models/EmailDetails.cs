@@ -8,10 +8,10 @@ namespace UfcFightCard.Models
 {
     public class Emaildetails
     {
-        public string? Email { get; set; }
+        public string? FromEmail { get; set; }
         public string? Password { get; set; }
         public string? Name { get; set; }
-        public string? ToEmail { get; set; }
+        public string[]? ToEmail { get; set; }
         public string? ToName { get; set; }
     }
 }
