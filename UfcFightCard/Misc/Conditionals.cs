@@ -12,7 +12,7 @@ namespace UfcFightCard.Misc
         public static bool ShouldSendEmail(LatestCard card, Emaildetails? emaildetails)
         {
             DateTime currentTime = DateTime.Now;
-            DateTime targetTime = DateTime.Now.AddDays(5);//card.MainCardTimeStamp.GetValueOrDefault(DateTime.Now);
+            DateTime targetTime = card.MainCardTimeStamp.GetValueOrDefault(DateTime.Now);
             TimeSpan difference = targetTime.Subtract(currentTime);
             bool isItTimeToSend = false;
 
